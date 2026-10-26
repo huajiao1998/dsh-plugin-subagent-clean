@@ -1,0 +1,76 @@
+{
+  "name": "dsh-plugin-subagent-delete",
+  "version": "0.3.0",
+  "description": "DeepSeek Harness plugin: ownership-checked delete_subagent / release_subagent / list_subagents tools, a web UI cleanup panel, and in-place retirement of the parent session's subagent catalog rows - deleting a subagent finally removes its stale row too.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "subagent",
+    "delete-subagent",
+    "cleanup",
+    "session-management"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huajiao1998/dsh-plugin-subagent-clean.git"
+  },
+  "files": [
+    "src/",
+    "lib/client.js",
+    "examples/",
+    "docs/",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-api-session-controller",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-tools": ">=0.1.0-rc.8 <0.2.0-0 || >=0.2.0-rc.2 <0.3.0-0"
+  },
+  "scripts": {
+    "check": "node --check src/index.js && node --check lib/client.js",
+    "pack:dry": "npm pack --dry-run",
+    "prepublishOnly": "npm run check"
+  },
+  "homepage": "https://github.com/huajiao1998/dsh-plugin-subagent-clean#readme",
+  "bugs": {
+    "url": "https://github.com/huajiao1998/dsh-plugin-subagent-clean/issues"
+  },
+  "author": "huajiao1998",
+  "contributors": [
+    {
+      "name": "heiheiha798",
+      "url": "https://github.com/heiheiha798/dsh-plugin-subagent-delete"
+    }
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "types": "src/index.d.ts"
+}
